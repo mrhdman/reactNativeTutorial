@@ -1,48 +1,36 @@
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, AppRegistry, Image} from 'react-native';
+import React, { Component } from 'react';
+import { AppRegistry, Text, View } from 'react-native';
 
-// export default class Bananas extends Component {
-//   render() {
-//     let pic = {
-//       uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
-//     };
-//     return (
-//       <Image source={pic} style={{width: 200, height: 200}}/>
-//     );
-//   }
-// }
+class Blink extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isShowingText: true };
 
-class Greeting extends Component {
-  render() {
+    setInterval(() => (
+      this.setState(previousState => (
+        { isShowingText: !previousState.isShowingText }
+      ))
+    ), 1000);
+  }
+
+  render () {
+    if (!this.state.isShowingText) {
+      return null;
+    }
+
     return (
-      <View style={{alignItems: 'center'}}>
-        <Text>Hello {this.props.name}!</Text>
-      </View>
+      <Text>{this.props.text}</Text>
     );
   }
 }
 
-export default class CitiesGreetings extends Component {
+export default class BlinkApp extends Component {
   render() {
     return (
-      <View style={{alignItems: 'center', top: 50}}>
-        <Greeting name='Oxford' />
-        <Greeting name='Austin' />
-        <Greeting name='Atlanta' />
+      <View>
+        <Blink text='Hello Oxford, Mississippi.' />
+        <Blink text='abcdefghijklmnopqrstuvwxyz.' />
       </View>
     );
   }
 }
-
-
-
-// export default class App extends Component {
-//   render() {
-//     return (
-//       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-//         <Text>Hello Oxford, Mississippi.</Text>
-//       </View>
-//     );
-//   }
-// }
-
