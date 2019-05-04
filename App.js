@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
-import { AppRegistry, View } from 'react-native';
+import { AppRegistry, Text, TextInput, View } from 'react-native';
 
-export default class AlignItemsBasics extends Component {
+export default class PizzaTranslator extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {text: ''}
+  }
+
   render() {
     return (
-      <View style={{
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'stretch',
-      }}>
-        <View style={{width: 50, height: 150, backgroundColor: 'blue'}} />
-        <View style={{height: 10, backgroundColor: 'skyblue'}} />
-        <View style={{height: 200, backgroundColor: 'red'}} />
+      <View style={{flex: 1}}>
+        <View style={{flex: 1, backgroundColor: 'powderblue'}} />
+        <TextInput
+          style={{flex: 9, fontSize: 20, paddingLeft: 10}}
+          placeholder="Type here to translate!"
+          onChangeText={(text) => this.setState({text})}
+          />
+          <Text style={{paddingLeft: 10, fontSize: 22}}>
+            {this.state.text.split(' ').map((word) => word && 'pizza').join(' ')}
+          </Text>
+          <View style={{flex: 1, backgroundColor: 'powderblue'}} />
       </View>
-    )
+    );
   }
 }
