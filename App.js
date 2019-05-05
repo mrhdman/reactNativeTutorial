@@ -1,32 +1,18 @@
 import React, { Component } from 'react';
-import { AppRegistry, FlatList, StyleSheet, Text, View } from 'react-native';
+import { AppRegistry, SectionList, StyleSheet, Text, View } from 'react-native';
 
-export default class FlatListBasics extends Component {
+export default class SectionListBasics extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <FlatList
-          data={[
-            {key: 'O'},
-            {key: 'OX'},
-            {key: 'OXF'},
-            {key: 'OXFO'},
-            {key: 'OXFOR'},
-            {key: 'OXFORD'},
-            {key: 'OXFORD,'},
-            {key: 'OXFORD,M'},
-            {key: 'OXFORD,Mi'},
-            {key: 'OXFORD,Mis'},
-            {key: 'OXFORD,Miss'},
-            {key: 'OXFORD,Missi'},
-            {key: 'OXFORD,Missis'},
-            {key: 'OXFORD,Mississ'},
-            {key: 'OXFORD,Mississi'},
-            {key: 'OXFORD,Mississip'},
-            {key: 'OXFORD,Mississipp'},
-            {key: 'OXFORD,Mississippi'},
+        <SectionList
+          sections={[
+            {title: 'O', data: ['Oxford']},
+            {title: 'P', data: ['Pittsburg', 'Philadelphia']},
           ]}
-          renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+          renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
+          renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+          keyExtractor={(item, index) => index}
         />
       </View>
     );
@@ -38,9 +24,18 @@ const styles = StyleSheet.create({
    flex: 1,
    paddingTop: 22
   },
+  sectionHeader: {
+    paddingTop: 2,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 2,
+    fontSize: 14,
+    fontWeight: 'bold',
+    backgroundColor: 'rgba(247,247,247,1.0)',
+  },
   item: {
     padding: 10,
-    fontSize: 30,
+    fontSize: 18,
     height: 44,
   },
 })
